@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
-import authSchema from "./schemaValid/authSchema";
+import authSchema from "../pages/schemaValid/authSchema";
 import api from "../axios/indext";
 import { useNavigate } from "react-router-dom";
 

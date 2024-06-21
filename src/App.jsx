@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
-import AuthForm from "./pages/AuthForm";
 import api from "./axios/indext";
 import Footer from "./components/footer";
 import Header from "./components/header";
@@ -10,7 +9,8 @@ import Home from "./pages/Home";
 import ProductDetail from "./pages/ProductDetail";
 import Dashboard from "./pages/admin/Dashboard";
 import ProductForm from "./pages/admin/ProductForm";
-import PrivateRoute from "./pages/PrivateRoute";
+import AuthForm from "./components/AuthForm";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   const [products, setProducts] = useState([]);
