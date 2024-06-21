@@ -4,9 +4,8 @@ import { useForm } from "react-hook-form";
 import authSchema from "./schemaValid/authSchema";
 import api from "../axios/indext";
 import { useNavigate } from "react-router-dom";
-import Button from "./../components/Button";
 
-const Login = () => {
+const AuthForm = ({ isRegister }) => {
   const nav = useNavigate();
   const {
     register,
@@ -15,24 +14,30 @@ const Login = () => {
   } = useForm({
     resolver: zodResolver(authSchema),
   });
-  const onSubmit = (data) => {
-    //console.log(data);
-    (async () => {
-      try {
-        await api.post(`/login`, data);
-        if (confirm("Login successfully, redirect home page? ")) {
-          nav("/");
-        }
-      } catch (error) {
-        alert(error?.response.data);
-      }
-    })();
-  };
 
+  const onSubmit = async (data) => {
+    try {
+      if (isRegister) {
+        await api.post(`/register`, data);
+        if (confirm("Successfully, redirect to login page?")) {
+          nav("/login");
+        }
+      } else {
+        const res = await api.post(`/login`, data);
+        localStorage.setItem("user", JSON.stringify(res.data));
+        if (confirm("Successfully, redirect to admin page?")) {
+          nav("/admin");
+        }
+      }
+    } catch (error) {
+      alert(error.response.data);
+    }
+  };
   return (
-    <>
+    <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h1 className="text-center">Login</h1>
+        <h1>{isRegister ? "Register" : "Login"}</h1>
+
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
             Email
@@ -41,36 +46,36 @@ const Login = () => {
             type="text"
             className="form-control"
             id="email"
-            {...register("email", { required: true })}
+            {...register("email")}
           />
-          {errors.email?.message && (
-            <p className="text-danger">{errors.email?.message}</p>
+          {errors?.email && (
+            <p className="text-danger">{errors?.email?.message}</p>
           )}
         </div>
+
         <div className="mb-3">
           <label htmlFor="password" className="form-label">
-            Password
+            password
           </label>
           <input
             type="password"
             className="form-control"
             id="password"
-            {...register("password", { required: true })}
+            {...register("password")}
           />
-          {errors.password?.message && (
-            <p className="text-danger">{errors.password?.message}</p>
+          {errors?.password && (
+            <p className="text-danger">{errors?.password?.message}</p>
           )}
         </div>
 
         <div className="mb-3">
-          {/* <button type="submit" className="btn btn-primary w-100">
-            Login
-          </button> */}
-          <Button width="100%">Login</Button>
+          <button className="btn btn-primary w-100">
+            {isRegister ? "Register" : "Login"}
+          </button>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 
-export default Login;
+export default AuthForm;

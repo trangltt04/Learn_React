@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Dashboard = ({ data, remove }) => {
-  console.log(data);
+  // console.log(data);
 
   // const remove = (id) => {
   //   console.log(id);

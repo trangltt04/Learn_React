@@ -2,9 +2,9 @@
   "products": [
     {
       "id": 1,
-      "title": "iPhone 99",
-      "description": "An apple mobile which is nothing like apple",
-      "price": 549,
+      "title": "iPhone 888",
+      "description": "An apple mobile which is nothing like apple update",
+      "price": 578,
       "discountPercentage": 12.96,
       "rating": 4.69,
       "stock": 94,
@@ -535,10 +535,10 @@
       ]
     },
     {
-      "title": "iphone134",
-      "price": 140,
-      "description": "mo ta3",
-      "id": 31
+      "title": "san pham moi",
+      "price": 123,
+      "description": "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
+      "id": 34
     }
   ],
   "users": [
@@ -546,6 +546,16 @@
       "email": "thwchagg09@gmail.com",
       "password": "$2a$10$YKYC5fQ4zeONxFPTIZyzyOM5WL9DXG1PbvZ0zG7qKv9X0Kjxax9Ci",
       "id": 1
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$bI6KLtNlx/eibzEw.PjfhuuM6uefB4oh/MMjJSOpOLhu9O.ce14BO",
+      "id": 2
+    },
+    {
+      "email": "trang@gmail.com",
+      "password": "$2a$10$dNBHVuk/2ddIibqJLw3kPeL16L.DMY6jVJQlQfyTfdBlkYDcLMk36",
+      "id": 3
     }
   ]
 }
