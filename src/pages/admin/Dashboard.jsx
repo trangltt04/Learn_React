@@ -1,17 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Dashboard = ({ data, remove }) => {
-  // console.log(data);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  // const remove = (id) => {
-  //   console.log(id);
-  // };
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const filteredData = data.filter((p) =>
+    p.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   return (
     <div>
       <Link to="/admin/product-add" className="btn btn-outline-danger">
-        Them san pham
+        Add new product
       </Link>
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search by title..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className="form-control"
+        />
+      </div>
       <table className="table table-bordered text-center">
         <thead className="table-dark">
           <tr>
@@ -24,7 +37,8 @@ const Dashboard = ({ data, remove }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((p) => (
+          {/* {data.map((p) => ( */}
+          {filteredData.map((p) => (
             <tr key={p.id}>
               <td>{p.id}</td>
               <td>{p.title}</td>
