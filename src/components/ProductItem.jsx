@@ -5,18 +5,18 @@ import Button from "./Button";
 
 const ProductItem = ({ data }) => {
   return (
-    <div className={s.productItem} key={data.id}>
-      <Link to={`/data-detail/${data.id}`}>
+    <div className={s.productItem}>
+      <Link to={`/product-detail/${data.id}`}>
         <img src={data.thumbnail} alt="" />
       </Link>
       <div className={s.content}>
-        <Link to={`/data-detail/${data.id}`}>
+        <Link to={`/product-detail/${data.id}`}>
           <h2>{data.title}</h2>
         </Link>
         <p>${data.price}</p>
         <p>{data.description}</p>
         <Button className="btn btn-danger" width="100%">
-          Mua ngay
+          Add to cart
         </Button>
       </div>
     </div>

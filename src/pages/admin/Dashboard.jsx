@@ -26,7 +26,7 @@ const Dashboard = ({ data, remove }) => {
         />
       </div>
       <table className="table table-bordered text-center">
-        <thead className="table-dark">
+        <thead className="table-danger">
           <tr>
             <th>ID</th>
             <th>TITLE</th>

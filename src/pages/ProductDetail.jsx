@@ -5,6 +5,7 @@ import api from "../axios/indext";
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
+
   useEffect(() => {
     (async () => {
       const { data } = await api.get(`/products/${id}`);
