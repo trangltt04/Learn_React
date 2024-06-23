@@ -1,12 +1,16 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../../axios/indext";
 import productSchame from "./../schemaValid/productSchema";
+import { ProductContext } from "../../contexts/ProductContext";
 
-const ProductForm = ({ handleProduct }) => {
+const ProductForm = () => {
+  const { dispatch } = useContext(ProductContext);
   const { id } = useParams();
+  const nav = useNavigate();
+
   const {
     register,
     formState: { errors },
@@ -22,6 +26,20 @@ const ProductForm = ({ handleProduct }) => {
       })();
     }, []);
   }
+
+  const handleProduct = async (data) => {
+    if (id) {
+      await api.patch(`/products/${id}`, data);
+      dispatch({ type: "EDIT_PRODUCT", payload: { id, ...data } });
+    } else {
+      const res = await api.post(`/products`, data);
+      dispatch({ type: "ADD_PRODUCT", payload: res.data });
+    }
+    if (confirm("Successfully, redirect to admin page?")) {
+      nav("/admin");
+    }
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit((data) => handleProduct({ ...data, id }))}>
